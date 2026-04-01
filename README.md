@@ -6,6 +6,8 @@ This is the basic chatting application.
         HTML,CSS,JAVASCRIPT
     BACKEND:
         NODE.JS,EXRESS.JS,MONGODB,EJS,etc.
+# API
+Used restfull API for routing ,etc.
 # FROM
 Here you should mention your's name and the person name,
 who you want to send the message.
