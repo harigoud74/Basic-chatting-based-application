@@ -8,6 +8,7 @@ const Chat = require("./models/chat.js");
 const { create } = require("domain");
 const methodOverride = require("method-override")
 const { channel } = require("diagnostics_channel");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -24,9 +25,9 @@ async function main() {
 }
 app.get("/chats", async (req, res) => {
   let chats = await Chat.find({});
-  // console.log(chats);
   res.render("index.ejs", { chats });
 });
+// To add new chat.
 app.get("/chats/new", (req, res) => {
   res.render("newChats.ejs");
 });
@@ -37,12 +38,9 @@ app.post("/chats", (req, res) => {
     from: from,
     to: to,
     message: message,
-    
-
     created_at: new Date(),
-
   });
-  
+  // save to the database.
   newChat
     .save()
     .then((res) => {
@@ -53,11 +51,10 @@ app.post("/chats", (req, res) => {
     });
   res.redirect("/chats");
 });
-
+// Edit the chat.
 app.get("/chats/:id/edit",async(req,res)=>{
   let {id} = req.params;
   let chat = await Chat.findById(id);
-  // console.log(chat);
   res.render("chatEdit.ejs",{chat});
 });
 
@@ -73,6 +70,7 @@ app.put("/chats/:id",async(req,res)=>{
   res.redirect("/chats");
 });
 
+// Delete the chat.
 app.delete("/chats/:id/delete",async(req,res)=>{
   let {id} = req.params;
   let delMsg = await Chat.findByIdAndDelete(id);
