@@ -8,6 +8,7 @@ const Chat = require("./models/chat.js");
 const { create } = require("domain");
 const methodOverride = require("method-override")
 const { channel } = require("diagnostics_channel");
+const mysql = require("mysql2");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
