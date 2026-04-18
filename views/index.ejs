@@ -40,6 +40,13 @@
             New Chat
           </button>
           </form>
+
+      <script>
+        // Example: Storing the Google API key in a global variable for use by client-side scripts
+        // Make sure to restrict the API key in Google Cloud Console since it's exposed to the client
+        window.GOOGLE_API_KEY = "<%= googleApiKey %>";
+        console.log("Google API Key loaded (first 5 chars):", window.GOOGLE_API_KEY.substring(0, 5) + "...");
+      </script>
 </body>
 
 </html>

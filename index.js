@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
@@ -26,7 +28,7 @@ async function main() {
 }
 app.get("/chats", async (req, res) => {
   let chats = await Chat.find({});
-  res.render("index.ejs", { chats });
+  res.render("index.ejs", { chats, googleApiKey: process.env.GOOGLE_API_KEY });
 });
 // To add new chat.
 app.get("/chats/new", (req, res) => {
